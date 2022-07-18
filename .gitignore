@@ -1,0 +1,8 @@
+# GoLand project files
+.idea
+
+# Binary folders
+bin
+
+*.exe
+*.bin
