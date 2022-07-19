@@ -20,3 +20,15 @@ type User struct {
 type GetUserRequest struct {
 	UserId int64 `json:"user_id,omitempty"`
 }
+
+type GetUsersRequest struct {
+	Search   *string  `json:"search,omitempty"`
+	PageSize *int     `json:"page_size,omitempty"`
+	Page     *int     `json:"page,omitempty"`
+	Sort     []string `json:"sort,omitempty"`
+}
+
+func (req *GetUsersRequest) CheckDefaults() {
+	_default(&req.PageSize, 60)
+	_default(&req.Page, 1)
+}
