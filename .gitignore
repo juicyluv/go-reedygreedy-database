@@ -6,3 +6,5 @@ bin
 
 *.exe
 *.bin
+
+main.go
