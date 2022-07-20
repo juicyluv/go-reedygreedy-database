@@ -14,4 +14,9 @@ type (
 		Review    *int16
 		Comment   *string
 	}
+
+	RemoveBookReviewRequest struct {
+		InvokerId int64
+		ReviewId  int64
+	}
 )
