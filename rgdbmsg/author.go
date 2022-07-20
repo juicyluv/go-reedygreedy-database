@@ -23,6 +23,12 @@ type (
 		Page     *int
 		Sort     []string
 	}
+
+	CreateAuthorRequest struct {
+		InvokerId   int64
+		Name        string
+		Description *string
+	}
 )
 
 func (req *GetAuthorsRequest) CheckDefaults() {
