@@ -25,6 +25,11 @@ type (
 		Page     *int
 		Sort     []string
 	}
+
+	DeleteCategoryRequest struct {
+		InvokerId  int64
+		CategoryId int16
+	}
 )
 
 func (req *GetCategoriesRequest) CheckDefaults() {
