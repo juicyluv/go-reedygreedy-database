@@ -64,6 +64,12 @@ type (
 		BookId    int64
 		UserId    int64
 	}
+
+	RemoveBookFromFavouritesRequest struct {
+		InvokerId int64
+		BookId    int64
+		UserId    int64
+	}
 )
 
 func (req *GetBooksRequest) CheckDefaults() {
