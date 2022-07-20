@@ -23,4 +23,16 @@ type (
 	GetBookRequest struct {
 		BookId int64
 	}
+
+	CreateBookRequest struct {
+		InvokerId   int64
+		Title       string
+		Price       float32
+		Count       int
+		AuthorId    int64
+		ISBN        string
+		Pages       *int16
+		LanguageId  *int16
+		Description *string
+	}
 )
