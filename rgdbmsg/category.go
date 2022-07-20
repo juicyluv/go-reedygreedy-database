@@ -26,6 +26,12 @@ type (
 		Sort     []string
 	}
 
+	UpdateCategoryRequest struct {
+		InvokerId  int64
+		CategoryId int16
+		Name       *string
+	}
+
 	DeleteCategoryRequest struct {
 		InvokerId  int64
 		CategoryId int16
