@@ -12,6 +12,7 @@ const getCategoryQuery = `
 	select 
 		name,
 		created_at,
+	    updated_at,
 		error
 	from core.get_category(
 	  _category_id := $1
@@ -43,6 +44,7 @@ func (d *driver) GetCategory(ctx context.Context, request *rgdbmsg.GetCategoryRe
 	err = row.Scan(
 		&category.Name,
 		&category.CreatedAt,
+		&category.UpdatedAt,
 		&status,
 	)
 
