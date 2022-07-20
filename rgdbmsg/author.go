@@ -16,4 +16,16 @@ type (
 	GetAuthorRequest struct {
 		AuthorId int64
 	}
+
+	GetAuthorsRequest struct {
+		Search   *string
+		PageSize *int
+		Page     *int
+		Sort     []string
+	}
 )
+
+func (req *GetAuthorsRequest) CheckDefaults() {
+	_default(&req.PageSize, 60)
+	_default(&req.Page, 1)
+}
