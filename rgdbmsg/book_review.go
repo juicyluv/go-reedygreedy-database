@@ -15,6 +15,10 @@ type (
 		Comment         *string    `json:"comment,omitempty"`
 	}
 
+	GetBookReviewRequest struct {
+		ReviewId int64
+	}
+
 	GetBookReviewsRequest struct {
 		BookId   *int64
 		Search   *string
