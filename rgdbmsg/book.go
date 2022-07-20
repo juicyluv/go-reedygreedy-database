@@ -53,6 +53,11 @@ type (
 		LanguageId  *int16
 		Description *string
 	}
+
+	DeleteBookRequest struct {
+		InvokerId int64
+		BookId    int64
+	}
 )
 
 func (req *GetBooksRequest) CheckDefaults() {
