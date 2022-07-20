@@ -35,4 +35,16 @@ type (
 		LanguageId  *int16
 		Description *string
 	}
+
+	GetBooksRequest struct {
+		Search   *string
+		PageSize *int
+		Page     *int
+		Sort     []string
+	}
 )
+
+func (req *GetBooksRequest) CheckDefaults() {
+	_default(&req.PageSize, 60)
+	_default(&req.Page, 1)
+}
