@@ -7,4 +7,11 @@ type (
 		Review    int16
 		Comment   *string
 	}
+
+	UpdateBookReviewRequest struct {
+		InvokerId int64
+		ReviewId  int64
+		Review    *int16
+		Comment   *string
+	}
 )
