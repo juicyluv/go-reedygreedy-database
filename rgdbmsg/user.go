@@ -32,3 +32,13 @@ func (req *GetUsersRequest) CheckDefaults() {
 	_default(&req.PageSize, 60)
 	_default(&req.Page, 1)
 }
+
+type CreateUserRequest struct {
+	InvokerId  int64
+	Username   string
+	Email      string
+	Password   string
+	TimeZoneId int16
+	Name       *string
+	Payload    []byte
+}
