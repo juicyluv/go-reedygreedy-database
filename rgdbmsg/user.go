@@ -42,3 +42,14 @@ type CreateUserRequest struct {
 	Name       *string
 	Payload    []byte
 }
+
+type UpdateUserRequest struct {
+	InvokerId  int64
+	UserId     int64
+	Username   *string
+	Password   *string
+	Email      *string
+	Name       *string
+	TimeZoneId *int16
+	Payload    []byte
+}
