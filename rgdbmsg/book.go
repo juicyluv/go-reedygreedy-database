@@ -42,6 +42,17 @@ type (
 		Page     *int
 		Sort     []string
 	}
+
+	UpdateBookRequest struct {
+		InvokerId   int64
+		BookId      int64
+		Title       *string
+		Price       *float32
+		Count       *int
+		AuthorId    *int64
+		LanguageId  *int16
+		Description *string
+	}
 )
 
 func (req *GetBooksRequest) CheckDefaults() {
