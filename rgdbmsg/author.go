@@ -36,6 +36,11 @@ type (
 		Name        *string
 		Description *string
 	}
+
+	DeleteAuthorRequest struct {
+		InvokerId int64
+		AuthorId  int64
+	}
 )
 
 func (req *GetAuthorsRequest) CheckDefaults() {
