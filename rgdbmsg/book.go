@@ -70,6 +70,12 @@ type (
 		BookId    int64
 		UserId    int64
 	}
+
+	AddBookToCategoryRequest struct {
+		InvokerId  int64
+		BookId     int64
+		CategoryId int16
+	}
 )
 
 func (req *GetBooksRequest) CheckDefaults() {
