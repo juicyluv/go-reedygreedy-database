@@ -29,6 +29,13 @@ type (
 		Name        string
 		Description *string
 	}
+
+	UpdateAuthorRequest struct {
+		InvokerId   int64
+		AuthorId    int64
+		Name        *string
+		Description *string
+	}
 )
 
 func (req *GetAuthorsRequest) CheckDefaults() {
