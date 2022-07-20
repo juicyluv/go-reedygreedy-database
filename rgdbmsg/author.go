@@ -41,6 +41,12 @@ type (
 		InvokerId int64
 		AuthorId  int64
 	}
+
+	AddAuthorToCategoryRequest struct {
+		InvokerId  int64
+		AuthorId   int64
+		CategoryId int16
+	}
 )
 
 func (req *GetAuthorsRequest) CheckDefaults() {
