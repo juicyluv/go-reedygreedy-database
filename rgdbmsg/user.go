@@ -53,3 +53,9 @@ type UpdateUserRequest struct {
 	TimeZoneId *int16
 	Payload    []byte
 }
+
+type DisableUserRequest struct {
+	InvokerId     int64
+	UserId        int64
+	DisableReason int16
+}
