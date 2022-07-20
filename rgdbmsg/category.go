@@ -12,4 +12,9 @@ type (
 	GetCategoryRequest struct {
 		CategoryId int16
 	}
+
+	CreateCategoryRequest struct {
+		InvokerId int64
+		Name      string
+	}
 )
