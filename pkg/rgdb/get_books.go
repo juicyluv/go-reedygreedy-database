@@ -33,10 +33,10 @@ const getBooksQuery = `
 	)
 `
 
-func (d *driver) GetBooks(ctx context.Context, request *rgdbmsg.GetBooksRequest) ([]*rgdbmsg.Book, int64, error) {
+func (c *Client) GetBooks(ctx context.Context, request *rgdbmsg.GetBooksRequest) ([]*rgdbmsg.Book, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := d.pool.Query(
+	rows, err := c.pool.Query(
 		ctx,
 		getBooksQuery,
 

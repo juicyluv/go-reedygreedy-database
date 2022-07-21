@@ -19,8 +19,8 @@ const getCategoryQuery = `
 	)
 `
 
-func (d *driver) GetCategory(ctx context.Context, request *rgdbmsg.GetCategoryRequest) (*rgdbmsg.Category, error) {
-	row, err := d.pool.Query(ctx, getCategoryQuery, request.CategoryId)
+func (c *Client) GetCategory(ctx context.Context, request *rgdbmsg.GetCategoryRequest) (*rgdbmsg.Category, error) {
+	row, err := c.pool.Query(ctx, getCategoryQuery, request.CategoryId)
 
 	if err != nil {
 		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)

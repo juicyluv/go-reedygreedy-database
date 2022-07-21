@@ -25,8 +25,8 @@ const createBookQuery = `
 	)
 `
 
-func (d *driver) CreateBook(ctx context.Context, request *rgdbmsg.CreateBookRequest) (*int64, error) {
-	row, err := d.pool.Query(
+func (c *Client) CreateBook(ctx context.Context, request *rgdbmsg.CreateBookRequest) (*int64, error) {
+	row, err := c.pool.Query(
 		ctx,
 		createBookQuery,
 

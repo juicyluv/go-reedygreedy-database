@@ -23,8 +23,8 @@ const updateUserQuery = `
 	)
 `
 
-func (d *driver) UpdateUser(ctx context.Context, request *rgdbmsg.UpdateUserRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) UpdateUser(ctx context.Context, request *rgdbmsg.UpdateUserRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		updateUserQuery,
 

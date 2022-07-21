@@ -18,8 +18,8 @@ const updateCategoryQuery = `
 	)
 `
 
-func (d *driver) UpdateCategory(ctx context.Context, request *rgdbmsg.UpdateCategoryRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) UpdateCategory(ctx context.Context, request *rgdbmsg.UpdateCategoryRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		updateCategoryQuery,
 

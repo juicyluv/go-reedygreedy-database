@@ -19,8 +19,8 @@ const updateAuthorQuery = `
 	)
 `
 
-func (d *driver) UpdateAuthor(ctx context.Context, request *rgdbmsg.UpdateAuthorRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) UpdateAuthor(ctx context.Context, request *rgdbmsg.UpdateAuthorRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		updateAuthorQuery,
 

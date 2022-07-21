@@ -27,8 +27,8 @@ const getUserQuery = `
 	)
 `
 
-func (d *driver) GetUser(ctx context.Context, request *rgdbmsg.GetUserRequest) (*rgdbmsg.User, error) {
-	row, err := d.pool.Query(ctx, getUserQuery, request.UserId)
+func (c *Client) GetUser(ctx context.Context, request *rgdbmsg.GetUserRequest) (*rgdbmsg.User, error) {
+	row, err := c.pool.Query(ctx, getUserQuery, request.UserId)
 
 	if err != nil {
 		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)

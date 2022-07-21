@@ -19,8 +19,8 @@ const updateBookReviewQuery = `
 	)
 `
 
-func (d *driver) UpdateBookReview(ctx context.Context, request *rgdbmsg.UpdateBookReviewRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) UpdateBookReview(ctx context.Context, request *rgdbmsg.UpdateBookReviewRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		updateBookReviewQuery,
 

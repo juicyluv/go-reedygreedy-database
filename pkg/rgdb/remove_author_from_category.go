@@ -18,8 +18,8 @@ const removeAuthorFromCategoryQuery = `
 	)
 `
 
-func (d *driver) RemoveAuthorFromCategory(ctx context.Context, request *rgdbmsg.RemoveAuthorFromCategoryRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) RemoveAuthorFromCategory(ctx context.Context, request *rgdbmsg.RemoveAuthorFromCategoryRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		removeAuthorFromCategoryQuery,
 

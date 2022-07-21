@@ -29,8 +29,8 @@ const getBookQuery = `
 	)
 `
 
-func (d *driver) GetBook(ctx context.Context, request *rgdbmsg.GetBookRequest) (*rgdbmsg.Book, error) {
-	row, err := d.pool.Query(ctx, getBookQuery, request.BookId)
+func (c *Client) GetBook(ctx context.Context, request *rgdbmsg.GetBookRequest) (*rgdbmsg.Book, error) {
+	row, err := c.pool.Query(ctx, getBookQuery, request.BookId)
 
 	if err != nil {
 		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)

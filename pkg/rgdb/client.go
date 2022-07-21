@@ -7,13 +7,13 @@ import (
 	"go.uber.org/zap"
 )
 
-type driver struct {
+type Client struct {
 	logger *zap.Logger
 	cfg    *Config
 	pool   *pgxpool.Pool
 }
 
-func New(logger *zap.Logger, cfg *Config) (*driver, error) {
+func New(logger *zap.Logger, cfg *Config) (*Client, error) {
 	config, err := pgxpool.ParseConfig(cfg.GetConnectionString())
 
 	if err != nil {
@@ -34,7 +34,7 @@ func New(logger *zap.Logger, cfg *Config) (*driver, error) {
 		return nil, err
 	}
 
-	return &driver{
+	return &Client{
 		logger: logger,
 		cfg:    cfg,
 		pool:   pool,
