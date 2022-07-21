@@ -17,8 +17,8 @@ const deleteAuthorQuery = `
 	)
 `
 
-func (d *driver) DeleteAuthor(ctx context.Context, request *rgdbmsg.DeleteAuthorRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) DeleteAuthor(ctx context.Context, request *rgdbmsg.DeleteAuthorRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		deleteAuthorQuery,
 

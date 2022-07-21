@@ -18,8 +18,8 @@ const createCategoryQuery = `
 	)
 `
 
-func (d *driver) CreateCategory(ctx context.Context, request *rgdbmsg.CreateCategoryRequest) (*int64, error) {
-	row, err := d.pool.Query(
+func (c *Client) CreateCategory(ctx context.Context, request *rgdbmsg.CreateCategoryRequest) (*int64, error) {
+	row, err := c.pool.Query(
 		ctx,
 		createCategoryQuery,
 

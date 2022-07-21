@@ -17,8 +17,8 @@ const deleteBookQuery = `
 	)
 `
 
-func (d *driver) DeleteBook(ctx context.Context, request *rgdbmsg.DeleteBookRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) DeleteBook(ctx context.Context, request *rgdbmsg.DeleteBookRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		deleteBookQuery,
 

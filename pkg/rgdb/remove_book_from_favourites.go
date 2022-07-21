@@ -18,8 +18,8 @@ const removeBookFromFavouritesQuery = `
 	)
 `
 
-func (d *driver) RemoveBookFromFavourites(ctx context.Context, request *rgdbmsg.RemoveBookFromFavouritesRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) RemoveBookFromFavourites(ctx context.Context, request *rgdbmsg.RemoveBookFromFavouritesRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		removeBookFromFavouritesQuery,
 

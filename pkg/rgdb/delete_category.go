@@ -17,8 +17,8 @@ const deleteCategoryQuery = `
 	)
 `
 
-func (d *driver) DeleteCategory(ctx context.Context, request *rgdbmsg.DeleteCategoryRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) DeleteCategory(ctx context.Context, request *rgdbmsg.DeleteCategoryRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		deleteCategoryQuery,
 

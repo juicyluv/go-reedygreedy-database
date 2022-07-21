@@ -19,8 +19,8 @@ const createAuthorQuery = `
 	)
 `
 
-func (d *driver) CreateAuthor(ctx context.Context, request *rgdbmsg.CreateAuthorRequest) (*int64, error) {
-	row, err := d.pool.Query(
+func (c *Client) CreateAuthor(ctx context.Context, request *rgdbmsg.CreateAuthorRequest) (*int64, error) {
+	row, err := c.pool.Query(
 		ctx,
 		createAuthorQuery,
 

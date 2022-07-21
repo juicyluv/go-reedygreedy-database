@@ -31,10 +31,10 @@ const getUsersQuery = `
 	)
 `
 
-func (d *driver) GetUsers(ctx context.Context, request *rgdbmsg.GetUsersRequest) ([]*rgdbmsg.User, int64, error) {
+func (c *Client) GetUsers(ctx context.Context, request *rgdbmsg.GetUsersRequest) ([]*rgdbmsg.User, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := d.pool.Query(
+	rows, err := c.pool.Query(
 		ctx,
 		getUsersQuery,
 

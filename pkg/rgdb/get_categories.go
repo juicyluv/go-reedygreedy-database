@@ -23,10 +23,10 @@ const getCategoriesQuery = `
 	)
 `
 
-func (d *driver) GetCategories(ctx context.Context, request *rgdbmsg.GetCategoriesRequest) ([]*rgdbmsg.Category, int64, error) {
+func (c *Client) GetCategories(ctx context.Context, request *rgdbmsg.GetCategoriesRequest) ([]*rgdbmsg.Category, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := d.pool.Query(
+	rows, err := c.pool.Query(
 		ctx,
 		getCategoriesQuery,
 

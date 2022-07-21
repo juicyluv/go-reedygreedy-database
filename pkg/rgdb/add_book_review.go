@@ -20,8 +20,8 @@ const addBookReviewQuery = `
 	)
 `
 
-func (d *driver) AddBookReview(ctx context.Context, request *rgdbmsg.AddBookReviewRequest) (*int64, error) {
-	row, err := d.pool.Query(
+func (c *Client) AddBookReview(ctx context.Context, request *rgdbmsg.AddBookReviewRequest) (*int64, error) {
+	row, err := c.pool.Query(
 		ctx,
 		addBookReviewQuery,
 

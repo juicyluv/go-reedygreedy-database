@@ -18,8 +18,8 @@ const disableUserQuery = `
 	)
 `
 
-func (d *driver) DisableUser(ctx context.Context, request *rgdbmsg.DisableUserRequest) error {
-	row, err := d.pool.Query(
+func (c *Client) DisableUser(ctx context.Context, request *rgdbmsg.DisableUserRequest) error {
+	row, err := c.pool.Query(
 		ctx,
 		disableUserQuery,
 

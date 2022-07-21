@@ -23,8 +23,8 @@ const createUserQuery = `
 	)
 `
 
-func (d *driver) CreateUser(ctx context.Context, request *rgdbmsg.CreateUserRequest) (*int64, error) {
-	row, err := d.pool.Query(
+func (c *Client) CreateUser(ctx context.Context, request *rgdbmsg.CreateUserRequest) (*int64, error) {
+	row, err := c.pool.Query(
 		ctx,
 		createUserQuery,
 
