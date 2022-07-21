@@ -3,8 +3,8 @@ package rgdb
 import (
 	"context"
 	"fmt"
-	rgdberr2 "rgdb/pkg/rgdberr"
-	"rgdb/pkg/rgdbmsg"
+	rgdberr2 "github.com/juicyluv/rgdb/pkg/rgdberr"
+	"github.com/juicyluv/rgdb/pkg/rgdbmsg"
 )
 
 //language=PostgreSQL
