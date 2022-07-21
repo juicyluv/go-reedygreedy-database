@@ -3,7 +3,7 @@ package rgdb
 import (
 	"context"
 	"fmt"
-	rgdberr2 "github.com/juicyluv/rgdb/pkg/rgdberr"
+	"github.com/juicyluv/rgdb/pkg/rgdberr"
 	"github.com/juicyluv/rgdb/pkg/rgdbmsg"
 )
 
@@ -31,17 +31,17 @@ func (d *driver) GetUser(ctx context.Context, request *rgdbmsg.GetUserRequest) (
 	row, err := d.pool.Query(ctx, getUserQuery, request.UserId)
 
 	if err != nil {
-		return nil, fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 	}
 
 	defer row.Close()
 
 	if !row.Next() {
 		if err = row.Err(); err != nil {
-			return nil, fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+			return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 		}
 
-		return nil, rgdberr2.ErrInternal
+		return nil, rgdberr.ErrInternal
 	}
 
 	var (
@@ -65,10 +65,10 @@ func (d *driver) GetUser(ctx context.Context, request *rgdbmsg.GetUserRequest) (
 	)
 
 	if err != nil {
-		return nil, fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 	}
 
-	if err = rgdberr2.AnalyzeQueryStatus(status); err != nil {
+	if err = rgdberr.AnalyzeQueryStatus(status); err != nil {
 		return nil, err
 	}
 

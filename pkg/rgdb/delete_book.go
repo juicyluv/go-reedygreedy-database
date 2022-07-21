@@ -3,7 +3,7 @@ package rgdb
 import (
 	"context"
 	"fmt"
-	rgdberr2 "github.com/juicyluv/rgdb/pkg/rgdberr"
+	"github.com/juicyluv/rgdb/pkg/rgdberr"
 	"github.com/juicyluv/rgdb/pkg/rgdbmsg"
 )
 
@@ -27,17 +27,17 @@ func (d *driver) DeleteBook(ctx context.Context, request *rgdbmsg.DeleteBookRequ
 	)
 
 	if err != nil {
-		return fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+		return fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 	}
 
 	defer row.Close()
 
 	if !row.Next() {
 		if err = row.Err(); err != nil {
-			return fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+			return fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 		}
 
-		return rgdberr2.ErrInternal
+		return rgdberr.ErrInternal
 	}
 
 	var status []byte
@@ -45,10 +45,10 @@ func (d *driver) DeleteBook(ctx context.Context, request *rgdbmsg.DeleteBookRequ
 	err = row.Scan(&status)
 
 	if err != nil {
-		return fmt.Errorf(`%w: %v`, rgdberr2.ErrInternal, err)
+		return fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
 	}
 
-	if err = rgdberr2.AnalyzeQueryStatus(status); err != nil {
+	if err = rgdberr.AnalyzeQueryStatus(status); err != nil {
 		return err
 	}
 
