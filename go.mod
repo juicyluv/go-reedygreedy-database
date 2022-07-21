@@ -1,4 +1,4 @@
-module rgdb
+module github.com/juicyluv/rgdb
 
 go 1.18
 
