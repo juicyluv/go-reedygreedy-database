@@ -2,25 +2,25 @@ package rgdb
 
 import (
 	"context"
-	"github.com/jackc/pgx/v4/log/zapadapter"
+	"github.com/jackc/pgx/v4/log/zerologadapter"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"go.uber.org/zap"
+	"github.com/juicyluv/rgutils/pkg/logger"
 )
 
 type Client struct {
-	logger *zap.Logger
+	logger *logger.Logger
 	cfg    *Config
 	pool   *pgxpool.Pool
 }
 
-func New(logger *zap.Logger, cfg *Config) (*Client, error) {
+func New(logger *logger.Logger, cfg *Config) (*Client, error) {
 	config, err := pgxpool.ParseConfig(cfg.GetConnectionString())
 
 	if err != nil {
 		return nil, err
 	}
 
-	config.ConnConfig.Logger = zapadapter.NewLogger(logger)
+	config.ConnConfig.Logger = zerologadapter.NewLogger(*logger.Logger)
 
 	pool, err := pgxpool.ConnectConfig(context.Background(), config)
 
