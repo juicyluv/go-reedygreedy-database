@@ -26,7 +26,7 @@ const getCategoriesQuery = `
 func (c *Client) GetCategories(ctx context.Context, request *rgdbmsg.GetCategoriesRequest) ([]*rgdbmsg.Category, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := c.pool.Query(
+	rows, err := c.Driver.Query(
 		ctx,
 		getCategoriesQuery,
 

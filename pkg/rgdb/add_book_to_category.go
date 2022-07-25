@@ -19,7 +19,7 @@ const addBookToCategoryQuery = `
 `
 
 func (c *Client) AddBookToCategory(ctx context.Context, request *rgdbmsg.AddBookToCategoryRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		addBookToCategoryQuery,
 

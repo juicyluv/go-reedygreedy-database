@@ -25,7 +25,7 @@ const getBookReviewQuery = `
 `
 
 func (c *Client) GetBookReview(ctx context.Context, request *rgdbmsg.GetBookReviewRequest) (*rgdbmsg.BookReview, error) {
-	row, err := c.pool.Query(ctx, getBookReviewQuery, request.ReviewId)
+	row, err := c.Driver.Query(ctx, getBookReviewQuery, request.ReviewId)
 
 	if err != nil {
 		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)

@@ -19,7 +19,7 @@ const updateCategoryQuery = `
 `
 
 func (c *Client) UpdateCategory(ctx context.Context, request *rgdbmsg.UpdateCategoryRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		updateCategoryQuery,
 

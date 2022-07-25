@@ -19,7 +19,7 @@ const createCategoryQuery = `
 `
 
 func (c *Client) CreateCategory(ctx context.Context, request *rgdbmsg.CreateCategoryRequest) (*int64, error) {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		createCategoryQuery,
 

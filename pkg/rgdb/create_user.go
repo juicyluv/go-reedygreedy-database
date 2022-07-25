@@ -17,14 +17,15 @@ const createUserQuery = `
 	  _username := $2, 
 	  _email := $3, 
 	  _password := $4, 
-	  _timezone_id := $5, 
-	  _name := $6, 
-	  _payload := $7
+	  _timezone_id := $5,
+	  _role_id := $6,
+	  _name := $7, 
+	  _payload := $8
 	)
 `
 
 func (c *Client) CreateUser(ctx context.Context, request *rgdbmsg.CreateUserRequest) (*int64, error) {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		createUserQuery,
 
@@ -33,6 +34,7 @@ func (c *Client) CreateUser(ctx context.Context, request *rgdbmsg.CreateUserRequ
 		request.Email,
 		request.Password,
 		request.TimeZoneId,
+		request.RoleId,
 		request.Name,
 		request.Payload,
 	)

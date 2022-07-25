@@ -34,7 +34,7 @@ const getUsersQuery = `
 func (c *Client) GetUsers(ctx context.Context, request *rgdbmsg.GetUsersRequest) ([]*rgdbmsg.User, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := c.pool.Query(
+	rows, err := c.Driver.Query(
 		ctx,
 		getUsersQuery,
 

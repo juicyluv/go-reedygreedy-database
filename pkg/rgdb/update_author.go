@@ -20,7 +20,7 @@ const updateAuthorQuery = `
 `
 
 func (c *Client) UpdateAuthor(ctx context.Context, request *rgdbmsg.UpdateAuthorRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		updateAuthorQuery,
 

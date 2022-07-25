@@ -19,7 +19,7 @@ const removeBookFromFavouritesQuery = `
 `
 
 func (c *Client) RemoveBookFromFavourites(ctx context.Context, request *rgdbmsg.RemoveBookFromFavouritesRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		removeBookFromFavouritesQuery,
 

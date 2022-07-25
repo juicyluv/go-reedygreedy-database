@@ -32,7 +32,7 @@ const getBookReviewsQuery = `
 func (c *Client) GetBookReviews(ctx context.Context, request *rgdbmsg.GetBookReviewsRequest) ([]*rgdbmsg.BookReview, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := c.pool.Query(
+	rows, err := c.Driver.Query(
 		ctx,
 		getBookReviewsQuery,
 

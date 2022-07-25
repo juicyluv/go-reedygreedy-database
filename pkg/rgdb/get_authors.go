@@ -29,7 +29,7 @@ const getAuthorsQuery = `
 func (c *Client) GetAuthors(ctx context.Context, request *rgdbmsg.GetAuthorsRequest) ([]*rgdbmsg.Author, int64, error) {
 	request.CheckDefaults()
 
-	rows, err := c.pool.Query(
+	rows, err := c.Driver.Query(
 		ctx,
 		getAuthorsQuery,
 

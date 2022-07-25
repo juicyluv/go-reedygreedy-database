@@ -19,7 +19,7 @@ const removeBookFromCategoryQuery = `
 `
 
 func (c *Client) RemoveBookFromCategory(ctx context.Context, request *rgdbmsg.RemoveBookFromCategoryRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		removeBookFromCategoryQuery,
 

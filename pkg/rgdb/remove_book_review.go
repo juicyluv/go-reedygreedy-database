@@ -18,7 +18,7 @@ const removeBookReviewQuery = `
 `
 
 func (c *Client) RemoveBookReview(ctx context.Context, request *rgdbmsg.RemoveBookReviewRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		removeBookReviewQuery,
 
