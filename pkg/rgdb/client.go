@@ -8,15 +8,15 @@ import (
 	"github.com/juicyluv/rgutils/pkg/logger"
 )
 
-type Interface interface {
+type Driver interface {
 	Query(ctx context.Context, sql string, args ...interface{}) (pgx.Rows, error)
 	Close()
 }
 
 type Client struct {
-	logger *logger.Logger
-	cfg    *Config
-	pool   *pgxpool.Pool
+	Logger *logger.Logger
+	Config *Config
+	Driver Driver
 }
 
 func New(logger *logger.Logger, cfg *Config) (*Client, error) {
@@ -41,16 +41,16 @@ func New(logger *logger.Logger, cfg *Config) (*Client, error) {
 	}
 
 	return &Client{
-		logger: logger,
-		cfg:    cfg,
-		pool:   pool,
+		Logger: logger,
+		Config: cfg,
+		Driver: pool,
 	}, nil
 }
 
 func (c *Client) Query(ctx context.Context, sql string, args ...interface{}) (pgx.Rows, error) {
-	return c.pool.Query(ctx, sql, args)
+	return c.Driver.Query(ctx, sql, args)
 }
 
 func (c *Client) Close() {
-	c.pool.Close()
+	c.Driver.Close()
 }

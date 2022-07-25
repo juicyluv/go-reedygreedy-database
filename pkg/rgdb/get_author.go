@@ -23,7 +23,7 @@ const getAuthorQuery = `
 `
 
 func (c *Client) GetAuthor(ctx context.Context, request *rgdbmsg.GetAuthorRequest) (*rgdbmsg.Author, error) {
-	row, err := c.pool.Query(ctx, getAuthorQuery, request.AuthorId)
+	row, err := c.Driver.Query(ctx, getAuthorQuery, request.AuthorId)
 
 	if err != nil {
 		return nil, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)

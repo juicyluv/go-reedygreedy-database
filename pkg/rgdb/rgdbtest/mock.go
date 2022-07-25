@@ -3,6 +3,7 @@ package rgdbtest
 import (
 	"errors"
 	"github.com/juicyluv/rgdb/pkg/rgdb"
+	"github.com/juicyluv/rgutils/pkg/logger"
 	"github.com/pashagolub/pgxmock"
 	"reflect"
 	"testing"
@@ -14,11 +15,11 @@ type ExpectedBehaviour struct {
 	Args            []interface{}
 	Columns         []string
 	Rows            [][]interface{}
-	ExpectedError   error
+	RowsError       error
 	WaitResponseFor time.Duration
 }
 
-func PrepareMock(t *testing.T, v ExpectedBehaviour) rgdb.Interface {
+func PrepareMock(t *testing.T, v ExpectedBehaviour) *rgdb.Client {
 	dataSet := pgxmock.NewRows(v.Columns)
 
 	for _, r := range v.Rows {
@@ -34,19 +35,24 @@ func PrepareMock(t *testing.T, v ExpectedBehaviour) rgdb.Interface {
 	mock.ExpectQuery(v.Query).
 		WithArgs(v.Args...).
 		WillReturnRows(dataSet).
-		WillReturnError(v.ExpectedError).
+		WillReturnError(v.RowsError).
 		WillDelayFor(v.WaitResponseFor).
 		RowsWillBeClosed()
 
-	return mock
+	client := &rgdb.Client{
+		Logger: logger.New(&logger.Config{LogToConsole: true}),
+		Driver: mock,
+	}
+
+	return client
 }
 
 func CheckResult(t *testing.T, actual, expected interface{}, actualError, expectedError error) {
 	if !errors.Is(actualError, expectedError) && !reflect.DeepEqual(actualError, expectedError) {
-		t.Fatalf("Mismatch error\n\nGot:%+v\nWant:%+v", actualError, expectedError)
+		t.Fatalf("Mismatch error\n\nGot:%+v\nExpected:%+v", actualError, expectedError)
 	}
 
 	if !reflect.DeepEqual(actual, expected) {
-		t.Fatalf("Mismatch response\n\nGot:%+v\nWant:%+v", actual, expected)
+		t.Fatalf("Mismatch response\n\nGot:%+v\nExpected:%+v", actual, expected)
 	}
 }

@@ -19,7 +19,7 @@ const disableUserQuery = `
 `
 
 func (c *Client) DisableUser(ctx context.Context, request *rgdbmsg.DisableUserRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		disableUserQuery,
 

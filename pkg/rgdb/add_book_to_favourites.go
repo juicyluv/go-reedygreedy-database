@@ -19,7 +19,7 @@ const addBookToFavouritesQuery = `
 `
 
 func (c *Client) AddBookToFavourites(ctx context.Context, request *rgdbmsg.AddBookToFavouritesRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		addBookToFavouritesQuery,
 

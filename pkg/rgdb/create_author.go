@@ -20,7 +20,7 @@ const createAuthorQuery = `
 `
 
 func (c *Client) CreateAuthor(ctx context.Context, request *rgdbmsg.CreateAuthorRequest) (*int64, error) {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		createAuthorQuery,
 

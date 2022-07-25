@@ -14,25 +14,21 @@ const updateUserQuery = `
 	from core.update_user(
 	  _invoker_id := $1, 
 	  _user_id := $2, 
-	  _username := $3, 
-	  _password := $4, 
-	  _email := $5, 
-	  _name := $6, 
-	  _timezone_id := $7, 
-	  _payload := $8
+	  _username := $3,
+	  _name := $4, 
+	  _timezone_id := $5, 
+	  _payload := $6
 	)
 `
 
 func (c *Client) UpdateUser(ctx context.Context, request *rgdbmsg.UpdateUserRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		updateUserQuery,
 
 		request.InvokerId,
 		request.UserId,
 		request.Username,
-		request.Password,
-		request.Email,
 		request.Name,
 		request.TimeZoneId,
 		request.Payload,

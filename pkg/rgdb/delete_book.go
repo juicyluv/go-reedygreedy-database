@@ -18,7 +18,7 @@ const deleteBookQuery = `
 `
 
 func (c *Client) DeleteBook(ctx context.Context, request *rgdbmsg.DeleteBookRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		deleteBookQuery,
 

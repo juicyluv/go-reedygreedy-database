@@ -24,7 +24,7 @@ const updateBookQuery = `
 `
 
 func (c *Client) UpdateBook(ctx context.Context, request *rgdbmsg.UpdateBookRequest) error {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		updateBookQuery,
 

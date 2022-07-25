@@ -21,7 +21,7 @@ const addBookReviewQuery = `
 `
 
 func (c *Client) AddBookReview(ctx context.Context, request *rgdbmsg.AddBookReviewRequest) (*int64, error) {
-	row, err := c.pool.Query(
+	row, err := c.Driver.Query(
 		ctx,
 		addBookReviewQuery,
 
