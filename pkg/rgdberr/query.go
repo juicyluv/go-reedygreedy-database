@@ -2,7 +2,6 @@ package rgdberr
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 )
 
@@ -13,16 +12,15 @@ const (
 )
 
 type queryStatus struct {
-	Status  int8          `json:"status"`
-	Details *queryDetails `json:"details,omitempty"`
-}
-
-type queryDetails struct {
-	Message string `json:"message,omitempty"`
-	Code    string `json:"code,omitempty"`
+	Status  int8           `json:"status"`
+	Details *DatabaseError `json:"details,omitempty"`
 }
 
 func AnalyzeQueryStatus(status []byte) error {
+	if status == nil {
+		return fmt.Errorf("%w: no query status provided", ErrInternal)
+	}
+
 	var query queryStatus
 
 	err := json.Unmarshal(status, &query)
@@ -38,11 +36,11 @@ func AnalyzeQueryStatus(status []byte) error {
 		return ErrUnknown
 	case queryStatusFailure:
 		if query.Details == nil {
-			return ErrInternal
+			return fmt.Errorf("%w: no error details", ErrInternal)
 		}
 
-		return errors.New(query.Details.Message)
+		return query.Details
 	default:
-		return ErrUnknown
+		return fmt.Errorf("%w: unhandled query status", ErrInternal)
 	}
 }
