@@ -2,10 +2,16 @@ package rgdb
 
 import (
 	"context"
+	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/log/zerologadapter"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/juicyluv/rgutils/pkg/logger"
 )
+
+type Interface interface {
+	Query(ctx context.Context, sql string, args ...interface{}) (pgx.Rows, error)
+	Close()
+}
 
 type Client struct {
 	logger *logger.Logger
@@ -39,4 +45,12 @@ func New(logger *logger.Logger, cfg *Config) (*Client, error) {
 		cfg:    cfg,
 		pool:   pool,
 	}, nil
+}
+
+func (c *Client) Query(ctx context.Context, sql string, args ...interface{}) (pgx.Rows, error) {
+	return c.pool.Query(ctx, sql, args)
+}
+
+func (c *Client) Close() {
+	c.pool.Close()
 }
