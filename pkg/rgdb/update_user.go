@@ -15,9 +15,11 @@ const updateUserQuery = `
 	  _invoker_id := $1, 
 	  _user_id := $2, 
 	  _username := $3,
-	  _name := $4, 
-	  _timezone_id := $5, 
-	  _payload := $6
+	  _avatar_url := $4,
+	  _name := $5, 
+	  _timezone_id := $6,
+	  _role_id := $7,
+	  _payload := $8
 	)
 `
 
@@ -29,8 +31,10 @@ func (c *Client) UpdateUser(ctx context.Context, request *rgdbmsg.UpdateUserRequ
 		request.InvokerId,
 		request.UserId,
 		request.Username,
+		request.AvatarURL,
 		request.Name,
 		request.TimeZoneId,
+		request.RoleId,
 		request.Payload,
 	)
 

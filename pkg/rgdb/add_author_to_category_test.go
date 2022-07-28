@@ -15,7 +15,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 	var addAuthorToCategoryTestSet = []struct {
 		name              string
 		request           rgdbmsg.AddAuthorToCategoryRequest
-		ExpectedBehaviour rgdbtest.ExpectedBehaviour
+		expectedBehaviour rgdbtest.ExpectedBehaviour
 		expectedError     error
 	}{
 		{
@@ -25,7 +25,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 				AuthorId:   2,
 				CategoryId: 3,
 			},
-			ExpectedBehaviour: rgdbtest.ExpectedBehaviour{
+			expectedBehaviour: rgdbtest.ExpectedBehaviour{
 				Query:   addAuthorToCategoryQuery,
 				Args:    []interface{}{int64(1), int64(2), int16(3)},
 				Columns: []string{"error"},
@@ -37,7 +37,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 		},
 		{
 			name: "Check query status response",
-			ExpectedBehaviour: rgdbtest.ExpectedBehaviour{
+			expectedBehaviour: rgdbtest.ExpectedBehaviour{
 				Query:   addAuthorToCategoryQuery,
 				Columns: []string{"error"},
 				Rows: [][]interface{}{
@@ -49,7 +49,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 		},
 		{
 			name: "Request error",
-			ExpectedBehaviour: rgdbtest.ExpectedBehaviour{
+			expectedBehaviour: rgdbtest.ExpectedBehaviour{
 				Query:   addAuthorToCategoryQuery,
 				Columns: []string{"error"},
 				Rows: [][]interface{}{
@@ -61,7 +61,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 		},
 		{
 			name: "Unexpected row",
-			ExpectedBehaviour: rgdbtest.ExpectedBehaviour{
+			expectedBehaviour: rgdbtest.ExpectedBehaviour{
 				Query:   addAuthorToCategoryQuery,
 				Columns: []string{"error", "extra"},
 				Rows: [][]interface{}{
@@ -72,7 +72,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 		},
 		{
 			name: "Null response",
-			ExpectedBehaviour: rgdbtest.ExpectedBehaviour{
+			expectedBehaviour: rgdbtest.ExpectedBehaviour{
 				Query: addAuthorToCategoryQuery,
 			},
 			expectedError: rgdberr.ErrInternal,
@@ -81,7 +81,7 @@ func TestClient_AddAuthorToCategory(t *testing.T) {
 
 	for _, v := range addAuthorToCategoryTestSet {
 		t.Run(v.name, func(t *testing.T) {
-			client := rgdbtest.PrepareMock(t, v.ExpectedBehaviour)
+			client := rgdbtest.PrepareMock(t, v.expectedBehaviour)
 
 			defer client.Close()
 
