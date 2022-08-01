@@ -4,7 +4,7 @@ import "time"
 
 type (
 	Achievement struct {
-		AchievementId *int64
+		AchievementId *int16
 		Name          *string
 		Description   *string
 		Payload       []byte
@@ -13,7 +13,7 @@ type (
 	}
 
 	GetAchievementRequest struct {
-		AchievementId int64
+		AchievementId int16
 	}
 
 	GetAchievementsRequest struct {
@@ -28,6 +28,14 @@ type (
 		Name        string
 		Description string
 		Payload     []byte
+	}
+
+	UpdateAchievementRequest struct {
+		InvokerId     int64
+		AchievementId int16
+		Name          *string
+		Description   *string
+		Payload       []byte
 	}
 )
 
