@@ -12,17 +12,22 @@ const getUsersQuery = `
 	select
 	    user_id,
 		username,
-	    email,
-	    payload,
+		email,
+		payload,
+		avatar_url,
 		name,
 		timezone,
 		creator_id,
 		creator_username,
+		role_id,
+		role_name,
+		role_access_level,
 		created_at,
 		updated_at,
 		disabled_at,
 		disable_reason,
-	    total
+		last_login,
+		total
 	from core.get_users(
 	  _search := $1,
 	  _page_size := $2,
@@ -60,7 +65,7 @@ func (c *Client) GetUsers(ctx context.Context, request *rgdbmsg.GetUsersRequest)
 
 	var total int64
 
-	err = rows.Scan(nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &total)
+	err = rows.Scan(nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, &total)
 
 	if err != nil {
 		return nil, 0, fmt.Errorf(`%w: %v`, rgdberr.ErrInternal, err)
@@ -82,14 +87,19 @@ func (c *Client) GetUsers(ctx context.Context, request *rgdbmsg.GetUsersRequest)
 			&user.Username,
 			&user.Email,
 			&user.Payload,
+			&user.AvatarURL,
 			&user.Name,
 			&user.TimeZone,
 			&user.CreatorId,
 			&user.CreatorUsername,
+			&user.RoleId,
+			&user.RoleName,
+			&user.RoleAccessLevel,
 			&user.CreatedAt,
 			&user.UpdatedAt,
 			&user.DisabledAt,
 			&user.DisableReason,
+			&user.LastLogin,
 			nil,
 		)
 

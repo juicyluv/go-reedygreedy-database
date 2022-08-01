@@ -12,7 +12,7 @@ const (
 )
 
 type queryStatus struct {
-	Status  int8           `json:"status"`
+	Status  *int8          `json:"status"`
 	Details *DatabaseError `json:"details,omitempty"`
 }
 
@@ -21,7 +21,7 @@ func AnalyzeQueryStatus(status []byte) error {
 		return fmt.Errorf("%w: no query status provided", ErrInternal)
 	}
 
-	var query queryStatus
+	var query *queryStatus
 
 	err := json.Unmarshal(status, &query)
 
@@ -29,7 +29,11 @@ func AnalyzeQueryStatus(status []byte) error {
 		return fmt.Errorf(`%w: %v`, ErrInternal, err)
 	}
 
-	switch query.Status {
+	if query == nil || query.Status == nil {
+		return fmt.Errorf("%w: unexpected error response", ErrInternal)
+	}
+
+	switch *query.Status {
 	case queryStatusSuccess:
 		return nil
 	case queryStatusInternal:

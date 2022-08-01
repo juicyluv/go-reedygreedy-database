@@ -40,7 +40,7 @@ func PrepareMock(t *testing.T, v ExpectedBehaviour) *rgdb.Client {
 		RowsWillBeClosed()
 
 	client := &rgdb.Client{
-		Logger: logger.New(&logger.Config{LogToConsole: true}),
+		Logger: logger.New(&logger.Config{LogToConsole: false}),
 		Driver: mock,
 	}
 

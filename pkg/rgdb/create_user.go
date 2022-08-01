@@ -19,8 +19,9 @@ const createUserQuery = `
 	  _password := $4, 
 	  _timezone_id := $5,
 	  _role_id := $6,
-	  _name := $7, 
-	  _payload := $8
+	  _avatar_url := $7,
+	  _name := $8, 
+	  _payload := $9
 	)
 `
 
@@ -35,6 +36,7 @@ func (c *Client) CreateUser(ctx context.Context, request *rgdbmsg.CreateUserRequ
 		request.Password,
 		request.TimeZoneId,
 		request.RoleId,
+		request.AvatarURL,
 		request.Name,
 		request.Payload,
 	)

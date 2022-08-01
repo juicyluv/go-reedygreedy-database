@@ -11,16 +11,21 @@ import (
 const getUserQuery = `
 	select 
 		username,
-	    email,
-	    payload,
+		email,
+		payload,
+		avatar_url,
 		name,
 		timezone,
 		creator_id,
 		creator_username,
+		role_id,
+		role_name,
+		role_access_level,
 		created_at,
 		updated_at,
 		disabled_at,
 		disable_reason,
+		last_login,
 		error
 	from core.get_user(
 	  _user_id := $1
@@ -53,14 +58,19 @@ func (c *Client) GetUser(ctx context.Context, request *rgdbmsg.GetUserRequest) (
 		&user.Username,
 		&user.Email,
 		&user.Payload,
+		&user.AvatarURL,
 		&user.Name,
 		&user.TimeZone,
 		&user.CreatorId,
 		&user.CreatorUsername,
+		&user.RoleId,
+		&user.RoleName,
+		&user.RoleAccessLevel,
 		&user.CreatedAt,
 		&user.UpdatedAt,
 		&user.DisabledAt,
 		&user.DisableReason,
+		&user.LastLogin,
 		&status,
 	)
 
