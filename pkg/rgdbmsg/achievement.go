@@ -15,4 +15,11 @@ type (
 	GetAchievementRequest struct {
 		AchievementId int64
 	}
+
+	CreateAchievementRequest struct {
+		InvokerId   int64
+		Name        string
+		Description string
+		Payload     []byte
+	}
 )
