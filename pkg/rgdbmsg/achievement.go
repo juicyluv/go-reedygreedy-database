@@ -37,6 +37,11 @@ type (
 		Description   *string
 		Payload       []byte
 	}
+
+	DeleteAchievementRequest struct {
+		InvokerId     int64
+		AchievementId int16
+	}
 )
 
 func (req *GetAchievementsRequest) CheckDefaults() {
