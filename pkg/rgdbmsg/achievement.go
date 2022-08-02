@@ -42,6 +42,12 @@ type (
 		InvokerId     int64
 		AchievementId int16
 	}
+
+	AddAchievementToUserRequest struct {
+		InvokerId     int64
+		AchievementId int16
+		UserId        int64
+	}
 )
 
 func (req *GetAchievementsRequest) CheckDefaults() {
