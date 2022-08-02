@@ -48,6 +48,12 @@ type (
 		AchievementId int16
 		UserId        int64
 	}
+
+	RemoveAchievementFromUserRequest struct {
+		InvokerId     int64
+		AchievementId int16
+		UserId        int64
+	}
 )
 
 func (req *GetAchievementsRequest) CheckDefaults() {
