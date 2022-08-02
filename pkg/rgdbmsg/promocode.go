@@ -35,6 +35,12 @@ type (
 		InvokerId   int64
 		PromocodeId int64
 	}
+
+	AddPromocodeToUserRequest struct {
+		InvokerId   int64
+		UserId      int64
+		PromocodeId int64
+	}
 )
 
 func (req *GetPromocodesRequest) CheckDefaults() {
