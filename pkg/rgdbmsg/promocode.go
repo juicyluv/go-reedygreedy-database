@@ -23,6 +23,10 @@ type (
 		EndingAt   *time.Time
 	}
 
+	GetPromocodeByNameRequest struct {
+		Promocode string
+	}
+
 	GetPromocodesRequest struct {
 		UserId   *int64
 		Search   *string
