@@ -10,4 +10,9 @@ type (
 		UsageCount *int
 		EndingAt   *time.Time
 	}
+
+	DeletePromocodeRequest struct {
+		InvokerId   int64
+		PromocodeId int64
+	}
 )
